@@ -1,0 +1,50 @@
+version: "3"
+services:
+  service:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: service:local
+    container_name: service
+    env_file:
+      - env-variables.env
+    ports:
+      - 3000:3000
+    depends_on:
+      - mongo-conf
+    volumes:
+      - .:/app
+
+  mongo0:
+    hostname: mongo0
+    container_name: mongo0
+    image: mongo
+    ports:
+      - 27017:27017
+    restart: always
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
+  mongo1:
+    hostname: mongo1
+    container_name: mongo1
+    image: mongo
+    ports:
+      - 27018:27017
+    restart: always
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
+  mongo2:
+    hostname: mongo2
+    container_name: mongo2
+    image: mongo
+    ports:
+      - 27019:27017
+    restart: always
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
+  mongo-conf:
+    container_name: mongo-conf
+    build:
+      context: .
+      dockerfile: Dockerfile-mongo-conf
+    depends_on:
+      - mongo0
+      - mongo1
+      - mongo2

@@ -1,0 +1,37 @@
+{
+  "name": "startershell-mongo",
+  "version": "1.0.0",
+  "description": "A simple project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "lint": "eslint lib config",
+    "start-dev": "nodemon index.js",
+    "test": "npm run test:integrations && npm run test:unit",
+    "test:unit": "echo 'Not yet available' && exit 0",
+    "test:integrations": "mocha test/integrations/*.test.js"
+  },
+  "author": "Mircea Alexandru <mircea.alexandru@gmail.com> (http://www.alexandrumircea.ro/)",
+  "engines": {
+    "node": ">=8.9.0"
+  },
+  "dependencies": {
+    "@hapi/boom": "^7.4.11",
+    "@hapi/hapi": "^18.4.0",
+    "@hapi/inert": "^5.2.2",
+    "@hapi/joi": "^15.1.1",
+    "@hapi/vision": "^5.5.4",
+    "hapi-pino": "^6.3.0",
+    "hapi-swagger": "^10.3.0",
+    "mongodb": "^3.3.5"
+  },
+  "devDependencies": {
+    "mocha": "^6.2.2",
+    "dotenv": "^8.2.0",
+    "eslint": "^6.5.1",
+    "pre-commit": "^1.2.2"
+  },
+  "pre-commit": [
+    "lint"
+  ]
+}
