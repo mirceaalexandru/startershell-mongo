@@ -1,4 +1,4 @@
-# A simple startershell project using node.js & mongo
+# A simple starter shell project using Node.js, Hapi.js & MongoDB
 
 Table of Contents
 =================
